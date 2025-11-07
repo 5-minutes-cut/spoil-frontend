@@ -13,6 +13,17 @@
 
   --color-bg-default: #f9fafb;
   --color-bg-white: #ffffff;
+  --color-brand-primary: #5a42f3;
+  --color-brand-secondary: #e8e9fe;
+  --color-brand-tertiary: #f3f4f6;
+  --color-brand-default: white;
+  --color-scale-50: gray-50;
+  --color-scale-100: gray-100;
+  --color-scale-200: gray-200;
+  --color-scale-300: gray-300;
+  --color-scale-500: gray-500;
+  --color-scale-700: gray-700;
+  --color-scale-800: gray-800;
 }
 
 html,
