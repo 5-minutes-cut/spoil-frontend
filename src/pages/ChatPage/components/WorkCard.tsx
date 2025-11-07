@@ -64,12 +64,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         </div>
 
         {/* 시청 기록 영역 */}
-        <div className="mt-3 bg-gray-50 rounded-xl p-4">
-          <div className="text-l text-gray-700 font-extrabold mb-4">
-            시청 기록
-          </div>
-          <div className="flex items-start gap-10">
-            <div className="flex flex-col shrink-0">
+        <div className="h-40 mt-3 bg-gray-50 rounded-xl p-4">
+          <div className="text-l text-gray-700 font-extrabold">시청 기록</div>
+          <div className="flex  items-start gap-5 ">
+            <div className="flex flex-col flex-shrink ">
               <p className="text-xs text-gray-500 mb-2">시즌</p>
               <Dropdown
                 options={seasons}
@@ -78,7 +76,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
               />
             </div>
 
-            <div className="flex flex-col shrink-0">
+            <div className="flex flex-col  flex-shrink">
               <p className="text-xs text-gray-500 mb-2">에피소드</p>
               <Dropdown
                 options={episodes}
@@ -87,10 +85,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({
               />
             </div>
 
-            <div className="shrink-0 mt-6">
+            <div className="mt-6 flex-shrink">
               <button
                 onClick={handleSubmit}
-                className="bg-brand-primary text-bg-white px-10 py-2 rounded-md text-sm font-medium hover:bg-brand-hover transition-colors"
+                className="bg-brand-primary text-bg-white px-8 py-2 rounded-md text-sm font-medium hover:bg-brand-hover transition-all duration-200"
               >
                 수정
               </button>
