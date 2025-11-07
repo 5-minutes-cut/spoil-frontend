@@ -8,8 +8,14 @@ export default function Layout() {
   return (
     <div className="w-full min-h-screen bg-bg-default">
       {showHeader && <Header />}
-      <main className="mx-auto w-full max-w-4xl px-12 py-4">
-        <Outlet />
+      <main className="w-full">
+        {pathname === "/" ? (
+          <Outlet />
+        ) : (
+          <div className="mx-auto w-full max-w-4xl px-12 py-4">
+            <Outlet />
+          </div>
+        )}
       </main>
     </div>
   );
