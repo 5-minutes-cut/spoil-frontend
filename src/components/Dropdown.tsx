@@ -25,7 +25,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
       {/* 버튼 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex justify-between w-20 rounded-md border border-scale-300 bg-brand-default px-3 py-2.5 text-sm text-scale-800 shadow-sm hover:bg-scale-50 focus:outline-none"
+        className="flex justify-between w-20 rounded-md border border-gray-300 bg-brand-default px-3 py-2.5 text-sm text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none"
       >
         {selected}
         <svg
@@ -48,15 +48,15 @@ export const Dropdown: React.FC<DropdownProps> = ({
 
       {/* 드롭다운 메뉴 */}
       {isOpen && (
-        <ul className="absolute left-0 mt-1 w-20 rounded-md border border-scale-200 bg-brand-default shadow-lg z-10">
+        <ul className="absolute left-0 mt-1 w-20 rounded-md border border-gray-200 bg-brand-default shadow-lg z-10">
           {options.map((option) => (
             <li
               key={option}
               onClick={() => handleSelect(option)}
-              className={`cursor-pointer px-3 py-1.5 text-sm hover:bg-scale-100 ${
+              className={`cursor-pointer px-3 py-1.5 text-sm hover:bg-gray-100 ${
                 selected === option
                   ? "text-brand-primary font-medium"
-                  : "text-scale-700"
+                  : "text-gray-700"
               }`}
             >
               {option}

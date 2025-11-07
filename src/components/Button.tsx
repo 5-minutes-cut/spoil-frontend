@@ -35,7 +35,7 @@ export const Button: React.FC<ButtonProps> = ({
         ${
           selected
             ? "bg-brand-primary text-brand-default" // 보라색 활성화
-            : "bg-brand-default border-scale-100 hover:bg-scale-300"
+            : "bg-brand-default border-gray-100 hover:bg-gray-300"
         }
       `}
     >
@@ -43,7 +43,7 @@ export const Button: React.FC<ButtonProps> = ({
       {selected ? (
         <span className="text-brand-default"></span>
       ) : (
-        <span className="text-scale-500"></span>
+        <span className="text-gray-500"></span>
       )}
       {text}
     </button>

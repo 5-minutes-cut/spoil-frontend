@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { WorkCard } from "../pages/ChatPage/components/WorkCard";
 
 export default function LandingPage() {
   return (
@@ -13,6 +14,17 @@ export default function LandingPage() {
       >
         시작하기 → /search
       </Link>
+      <WorkCard
+        title="예시 작품"
+        description="이것은 예시 작품의 설명입니다."
+        imageUrl="/public/WorkCardImage.svg"
+        badges={["추천", "신작"]}
+        seasons={["1", "2", "3"]}
+        episodes={["1", "2", "3", "4", "5"]}
+        onSubmit={(season, episode) =>
+          alert(`선택된 시즌: ${season}, 에피소드: ${episode}`)
+        }
+      />
     </section>
   );
 }

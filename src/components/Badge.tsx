@@ -27,7 +27,7 @@ export const Badge: React.FC<BadgeProps> = ({
         ${
           selected
             ? "bg-brand-secondary text-brand-primary" // 선택됨 (연보라 배경 + 진한 보라 텍스트)
-            : "bg-brand-tertiary text-shadow-scale-700" // 비활성 (회색 배경 + 어두운 텍스트)
+            : "bg-brand-tertiary text-shadow-gray-700" // 비활성 (회색 배경 + 어두운 텍스트)
         }
       `}
     >
