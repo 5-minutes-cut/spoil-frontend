@@ -262,12 +262,18 @@ export async function unlinkSocialAccount(): Promise<boolean> {
   }
 }
 
+export function redirectToKakaoLogin(): void {
+  const base = import.meta.env.VITE_API_BASE_URL as string;
+  window.location.href = `${base}/api/user/kakao/login/`;
+}
+
 export async function kakaoSignIn(code: string): Promise<boolean> {
   try {
-    const res = await api.get("/user/kakao/callback/", {
-      params: { code },
-    });
-    if (res.status === 200) return true;
+    const res = await api.get("/user/kakao/callback/", { params: { code } });
+    if (res.status === 200) {
+      localStorage.setItem("isLoggedIn", "true");
+      return true;
+    }
     return false;
   } catch (e: unknown) {
     if (isAxiosError(e)) {
@@ -275,8 +281,8 @@ export async function kakaoSignIn(code: string): Promise<boolean> {
     } else {
       console.error("kakaoSignIn unknown error:", e);
     }
+    return false;
   }
-  return false;
 }
 
 export async function kakaoCallback(code: string): Promise<boolean> {

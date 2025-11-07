@@ -1,7 +1,7 @@
 import type { FeatureCardProps } from "./components/FeatureCard";
 import { Kakao, Logo, Search, Spark, Unseen } from "../../assets/icons";
 import FeatureCard from "./components/FeatureCard";
-import { kakaoSignIn } from "../../apis/api";
+import { useNavigate } from "react-router-dom";
 
 const FEATURES: FeatureCardProps[] = [
   {
@@ -25,6 +25,8 @@ const FEATURES: FeatureCardProps[] = [
 ];
 
 export default function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <section className="bg-landing w-full min-h-screen">
       <div className="w-full max-w-4xl mx-auto px-12 py-16">
@@ -50,7 +52,7 @@ export default function LandingPage() {
         </div>
         <div className="flex justify-center">
           <button
-            onClick={() => kakaoSignIn}
+            onClick={() => navigate("/search")}
             className="inline-flex w-full max-w-90 items-center justify-center gap-2 rounded-xl bg-point-kakao px-5 py-3 text-sm font-semibold text-black shadow-card transition hover:brightness-[0.97] active:brightness-[0.94]"
           >
             <img src={Kakao} className="h-6 w-6" />
