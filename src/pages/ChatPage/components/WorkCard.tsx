@@ -35,7 +35,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
   return (
     <div className="flex w-full bg-bg-white rounded-2xl shadow-sm h-70 m-7 items-stretch">
       {/* 왼쪽 이미지 */}
-      <div className="w-1/3">
+      <div className="w-1/3 overflow-hidden rounded-l-2xl">
         <img
           src={imageUrl}
           alt={title}

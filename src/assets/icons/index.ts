@@ -9,6 +9,7 @@ import StreamingIcon from "../icons/StreamingIcon.svg";
 import ChatButton from "../icons/ChatButton.svg";
 import Seen from "../icons/Seen.svg";
 import WhiteLogo from "../icons/WhiteLogo.svg";
+import ClockIcon from "../icons/ClockIcon.svg";
 
 export {
   Home,
@@ -22,4 +23,5 @@ export {
   ChatButton,
   Seen,
   WhiteLogo,
+  ClockIcon,
 };
