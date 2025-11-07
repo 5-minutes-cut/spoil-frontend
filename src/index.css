@@ -1,6 +1,18 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/PretendardVariable.woff2") format("woff2");
+  font-weight: 1 1000;
+  font-display: swap;
+  font-style: normal;
+}
+
 @theme {
+  --font-pretendard: "Pretendard", ui-sans-serif, system-ui, -apple-system;
+
+  --color-bg-default: #f9fafb;
+  --color-bg-white: #ffffff;
   --color-brand-primary: #5a42f3;
   --color-brand-secondary: #e8e9fe;
   --color-brand-tertiary: #f3f4f6;
@@ -12,4 +24,11 @@
   --color-scale-500: gray-500;
   --color-scale-700: gray-700;
   --color-scale-800: gray-800;
+}
+
+html,
+body {
+  font-family: var(--font-pretendard);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
