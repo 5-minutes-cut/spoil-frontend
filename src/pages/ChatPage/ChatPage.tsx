@@ -15,7 +15,7 @@ export default function ChatPage() {
     "현재 시청 기록을 기준으로 대화 중입니다.",
   );
 
-  // ✅ 히스토리 클릭 시 실행
+  //  히스토리 클릭 시 실행
   const handleSelectHistory = (itemTitle: string) => {
     setChatTitle(itemTitle);
     setShowHistory(false); // 히스토리 닫기
@@ -43,7 +43,7 @@ export default function ChatPage() {
         <ChatHistoryButton onClick={() => setShowHistory(true)} />
       </div>
 
-      {/* ✅ ChatHistory 왼쪽, Chat 오른쪽 */}
+      {/* ChatHistory 왼쪽, Chat 오른쪽 */}
       <div className="flex w-full gap-6">
         {showHistory && (
           <div className="w-2/5 transition-all duration-300">
