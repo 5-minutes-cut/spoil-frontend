@@ -1,5 +1,6 @@
 import { Button } from "./components/Button";
 import { Dropdown } from "./components/Dropdown";
+import { Badge } from "./components/Badge";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         defaultOption="Option 2"
         onChange={(option) => console.log("Selected:", option)}
       />
+      <Badge label="Badge" defaultSelected={true}></Badge>
     </>
   );
 }
