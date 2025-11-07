@@ -92,7 +92,7 @@ export const Chat: React.FC<ChatProps> = ({
   }, []);
 
   return (
-    <div className="w-full mt-4 bg-white rounded-2xl shadow-md overflow-hidden">
+    <div className="w-full  bg-white rounded-2xl shadow-md overflow-hidden">
       {/* 상단 헤더 */}
       <div className="bg-gradient-to-r from-gradient-start to-gradient-end text-bg-white p-4 rounded-t-2xl flex flex-col justify-center">
         <div className="flex">
