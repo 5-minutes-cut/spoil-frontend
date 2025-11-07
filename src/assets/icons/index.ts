@@ -9,6 +9,7 @@ import StreamingIcon from "../icons/StreamingIcon.svg";
 import ChatButton from "../icons/ChatButton.svg";
 import Seen from "../icons/Seen.svg";
 import WhiteLogo from "../icons/WhiteLogo.svg";
+import ClockIcon from "../icons/ClockIcon.svg";
 import SparkBlack from "../icons/Spark_black.svg";
 import SparkWhite from "../icons/Spark_white.svg";
 import TVBlack from "../icons/TV_black.svg";
@@ -30,6 +31,7 @@ export {
   ChatButton,
   Seen,
   WhiteLogo,
+  ClockIcon,
   SparkBlack,
   SparkWhite,
   VideoBlack,
