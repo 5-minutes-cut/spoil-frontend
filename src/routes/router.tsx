@@ -3,7 +3,7 @@ import Layout from "../components/Layout";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import HomePage from "../pages/HomePage/HomePage";
 import ChatPage from "../pages/ChatPage/ChatPage";
-import ProfilePage from "../pages/ProfilePage";
+import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import ProtectedRoute from "./ProtectedRoute";
 

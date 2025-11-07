@@ -17,6 +17,14 @@ import LaptopBlack from "../icons/Laptop_black.svg";
 import LaptopWhite from "../icons/Laptop_white.svg";
 import VideoBlack from "../icons/Video_black.svg";
 import VideoWhite from "../icons/Video_white.svg";
+import Bug from "./Bug.svg";
+import BugGreen from "./Bug_green.svg";
+import BugWhite from "./Bug_white.svg";
+import Edit from "./Edit.svg";
+import Logout from "./Logout.svg";
+import ProfileWhite from "./Profile_white.svg";
+import Save from "./Save.svg";
+import Trash from "./Trash.svg";
 
 export {
   Home,
@@ -38,4 +46,12 @@ export {
   TVWhite,
   LaptopBlack,
   LaptopWhite,
+  Bug,
+  BugGreen,
+  BugWhite,
+  Edit,
+  Logout,
+  ProfileWhite,
+  Save,
+  Trash,
 };
