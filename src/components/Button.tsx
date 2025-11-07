@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface ButtonProps {
-  text: string; // 버튼 내부 텍스트
-  size?: "sm" | "md" | "lg"; // 버튼 크기
-  onClick?: () => void; // 외부 클릭 이벤트
-  defaultSelected?: boolean; // 초기 선택 여부
+  text: string;
+  size?: "sm" | "md" | "lg";
+  onClick?: () => void;
+  defaultSelected?: boolean;
+  selected?: boolean;
+  leftIconSrc?: string;
 }
 
 const sizeClasses = {
@@ -18,32 +20,36 @@ export const Button: React.FC<ButtonProps> = ({
   size = "md",
   onClick,
   defaultSelected = false,
+  selected,
+  leftIconSrc,
 }) => {
-  const [selected, setSelected] = useState(defaultSelected);
+  const [internal, setInternal] = useState(defaultSelected);
+
+  useEffect(() => {
+    setInternal(defaultSelected);
+  }, [defaultSelected]);
+
+  const isSelected = selected ?? internal;
 
   const handleClick = () => {
-    setSelected(!selected);
-    if (onClick) onClick();
+    if (selected === undefined) setInternal(!internal);
+    onClick?.();
   };
 
   return (
     <button
       onClick={handleClick}
-      className={`
-        font-pretendard flex items-center justify-center rounded-lg font-medium transition-colors duration-200
-        ${sizeClasses[size]}
-        ${
-          selected
-            ? "bg-brand-primary text-bg-white" // 보라색 활성화
-            : "bg-bg-white border-gray-100 hover:bg-gray-300"
-        }
-      `}
+      className={[
+        "font-pretendard flex items-center justify-center rounded-lg font-medium transition-colors duration-200 cursor-pointer",
+        sizeClasses[size],
+
+        isSelected
+          ? "bg-brand-primary text-bg-white border-brand-primary hover:bg-brand-hover"
+          : "bg-bg-white text-gray-700 border-brand-tertiary hover:bg-brand-tertiary",
+      ].join(" ")}
     >
-      {/* 아이콘 예시 (TV나 필름 아이콘 대신 대체 가능) */}
-      {selected ? (
-        <span className="text-bg-white"></span>
-      ) : (
-        <span className="text-gray-500"></span>
+      {leftIconSrc && (
+        <img src={leftIconSrc} alt="아이콘" className="h-4 w-4 mr-2" />
       )}
       {text}
     </button>
