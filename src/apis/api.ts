@@ -262,23 +262,6 @@ export async function unlinkSocialAccount(): Promise<boolean> {
   }
 }
 
-export async function kakaoSignIn(code: string): Promise<boolean> {
-  try {
-    const res = await api.get("/user/kakao/callback/", {
-      params: { code },
-    });
-    if (res.status === 200) return true;
-    return false;
-  } catch (e: unknown) {
-    if (isAxiosError(e)) {
-      console.error("kakaoSignIn error:", e.response?.status, e.response?.data);
-    } else {
-      console.error("kakaoSignIn unknown error:", e);
-    }
-  }
-  return false;
-}
-
 export async function kakaoCallback(code: string): Promise<boolean> {
   try {
     const res = await api.get("/user/kakao/callback/", { params: { code } });

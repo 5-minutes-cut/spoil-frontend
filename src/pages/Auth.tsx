@@ -1,6 +1,6 @@
 import { useEffect, useMemo } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { kakaoSignIn } from "../apis/api";
+import { kakaoCallback } from "../apis/api";
 
 export default function Auth() {
   const [params] = useSearchParams();
@@ -13,8 +13,13 @@ export default function Auth() {
         navigate("/", { replace: true });
         return;
       }
-      const ok = await kakaoSignIn(code);
-      navigate(ok ? "/search" : "/", { replace: true });
+      const ok = await kakaoCallback(code);
+      if (ok) {
+        localStorage.setItem("isLoggedIn", "true");
+        navigate("/search", { replace: true });
+      } else {
+        navigate("/", { replace: true });
+      }
     })();
   }, [code, navigate]);
 

@@ -1,7 +1,6 @@
 import type { FeatureCardProps } from "./components/FeatureCard";
 import { Kakao, Logo, Search, Spark, Unseen } from "../../assets/icons";
 import FeatureCard from "./components/FeatureCard";
-import { kakaoSignIn } from "../../apis/api";
 
 const FEATURES: FeatureCardProps[] = [
   {
@@ -25,6 +24,15 @@ const FEATURES: FeatureCardProps[] = [
 ];
 
 export default function LandingPage() {
+  const handleLogin = () => {
+    const KAKAO_AUTH_URL = "https://kauth.kakao.com/oauth/authorize";
+    // TODO: .env 파일에서 환경변수로 관리해야 합니다.
+    const REST_API_KEY = import.meta.env.VITE_KAKAO_REST_API_KEY;
+    const REDIRECT_URI = import.meta.env.VITE_KAKAO_REDIRECT_URI;
+    const kakaoURL = `${KAKAO_AUTH_URL}?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URI}&response_type=code`;
+    window.location.href = kakaoURL;
+  };
+
   return (
     <section className="bg-landing w-full min-h-screen">
       <div className="w-full max-w-4xl mx-auto px-12 py-16">
@@ -50,7 +58,7 @@ export default function LandingPage() {
         </div>
         <div className="flex justify-center">
           <button
-            onClick={() => kakaoSignIn}
+            onClick={handleLogin}
             className="inline-flex w-full max-w-90 items-center justify-center gap-2 rounded-xl bg-point-kakao px-5 py-3 text-sm font-semibold text-black shadow-card transition hover:brightness-[0.97] active:brightness-[0.94]"
           >
             <img src={Kakao} className="h-6 w-6" />

@@ -2,6 +2,10 @@ import { useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import {
+  logout as apiLogout,
+  unlinkSocialAccount,
+} from "../../apis/api";
+import {
   Bug,
   BugGreen,
   BugWhite,
@@ -152,11 +156,15 @@ export default function ProfilePage() {
     setUser((u) => ({ ...u, photoUrl: url }));
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await apiLogout();
+    localStorage.removeItem("isLoggedIn");
     navigate("/", { replace: true });
   };
 
-  const withdraw = () => {
+  const withdraw = async () => {
+    await unlinkSocialAccount();
+    localStorage.removeItem("isLoggedIn");
     navigate("/", { replace: true });
   };
 
@@ -217,7 +225,7 @@ export default function ProfilePage() {
           text="시청 기록"
           size="md"
           leftIconSrc={tab === "records" ? TVWhite : TVBlack}
-          selected={tab === "records"}
+          selected={tab === "records"
           onClick={() => setTab("records")}
         />
         <Button
