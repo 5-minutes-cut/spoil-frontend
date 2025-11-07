@@ -6,6 +6,9 @@ import Spark from "../icons/Spark.svg";
 import Unseen from "../icons/Unseen.svg";
 import Kakao from "../icons/kakao.svg";
 import StreamingIcon from "../icons/StreamingIcon.svg";
+import ChatButton from "../icons/ChatButton.svg";
+import Seen from "../icons/Seen.svg";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 import SparkBlack from "../icons/Spark_black.svg";
 import SparkWhite from "../icons/Spark_white.svg";
 import TVBlack from "../icons/TV_black.svg";
@@ -24,6 +27,9 @@ export {
   Unseen,
   Kakao,
   StreamingIcon,
+  ChatButton,
+  Seen,
+  WhiteLogo,
   SparkBlack,
   SparkWhite,
   VideoBlack,
