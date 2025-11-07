@@ -13,16 +13,16 @@ export const Chat: React.FC<ChatProps> = ({
   title = "더 글로리",
 }) => {
   const [messages, setMessages] = useState<
-    { sender: "bot" | "user"; text: string; LOCKSPOer?: boolean }[]
+    { sender: "bot" | "user"; text: string; spoiler?: boolean }[]
   >([
     {
       sender: "bot",
-      text: `안녕하세요! ${title}에 대해 궁금한 점을 물어보세요. 현재 시청 기록(시즌 ${season}, ${episode}화)을 기준으로 스포일러 없는 답변을 드리겠습니다.`,
+      text: "안녕하세요! 시즌 1 결말 관련 질문에 대해 궁금한 점을 물어보세요. 현재 시청 기록(시즌 1, 7화)을 기준으로 스포일러 없는 답변을 드리겠습니다.",
     },
     {
       sender: "bot",
       text: "주인공 문동은은 학창 시절 심각한 학교 폭력의 피해자였습니다. 시즌 1, 3화에서 그녀가 겪었던 폭력의 상처가 자세히 드러나며, 이것이 그녀의 복수 계획의 동기가 됩니다.",
-      LOCKSPOer: true,
+      spoiler: true,
     },
   ]);
 
@@ -108,7 +108,7 @@ export const Chat: React.FC<ChatProps> = ({
       <div className="p-4 h-[350px] overflow-y-auto flex flex-col gap-3 bg-gray-50 scrollbar-hidden">
         {messages.map((msg, idx) => {
           // 스포일러 메시지인 경우
-          if (msg.sender === "bot" && msg.LOCKSPOer) {
+          if (msg.sender === "bot" && msg.spoiler) {
             const isRevealed = revealed[idx];
             return (
               <div
@@ -119,7 +119,7 @@ export const Chat: React.FC<ChatProps> = ({
                 <div
                   className={`rounded-xl transition-colors ${
                     isRevealed
-                      ? "bg-LOCKSPOer-bg border border-LOCKSPOer-border p-3"
+                      ? "bg-spoiler-bg border border-spoiler-border p-3"
                       : "bg-gray-100 text-gray-400 p-3"
                   }`}
                 >

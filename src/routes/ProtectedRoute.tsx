@@ -1,7 +1,7 @@
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 function isAuthed() {
-  return !!localStorage.getItem("LOCKSPO_session");
+  return !!localStorage.getItem("spoil_session");
 }
 
 export default function ProtectedRoute() {

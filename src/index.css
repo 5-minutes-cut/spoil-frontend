@@ -24,8 +24,8 @@
   --color-landing-grad: #f6f7fb;
   --color-gradient-start: #7f56d9;
   --color-gradient-end: #5a42f3;
-  --color-LOCKSPOer-bg: #fffbea;
-  --color-LOCKSPOer-border: #f6e05e;
+  --color-spoiler-bg: #fffbea;
+  --color-spoiler-border: #f6e05e;
 }
 
 @utility bg-landing {
