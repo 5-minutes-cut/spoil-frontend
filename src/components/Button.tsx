@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 interface ButtonProps {
   text: string;
   size?: "sm" | "md" | "lg";
   onClick?: () => void;
-  defaultSelected?: boolean;
+  toggle?: boolean;
   selected?: boolean;
   leftIconSrc?: string;
 }
@@ -19,20 +19,16 @@ export const Button: React.FC<ButtonProps> = ({
   text,
   size = "md",
   onClick,
-  defaultSelected = false,
+  toggle = false,
   selected,
   leftIconSrc,
 }) => {
-  const [internal, setInternal] = useState(defaultSelected);
-
-  useEffect(() => {
-    setInternal(defaultSelected);
-  }, [defaultSelected]);
-
-  const isSelected = selected ?? internal;
+  const [innerSelected, setInnerSelected] = useState(false);
+  const isControlled = selected !== undefined;
+  const isSelected = isControlled ? selected! : innerSelected;
 
   const handleClick = () => {
-    if (selected === undefined) setInternal(!internal);
+    if (!isControlled && toggle) setInnerSelected((s) => !s);
     onClick?.();
   };
 
@@ -40,12 +36,11 @@ export const Button: React.FC<ButtonProps> = ({
     <button
       onClick={handleClick}
       className={[
-        "font-pretendard flex items-center justify-center rounded-lg font-medium transition-colors duration-200 cursor-pointer",
+        "inline-flex items-center justify-center rounded-lg font-medium transition-colors duration-200 cursor-pointer",
         sizeClasses[size],
-
         isSelected
           ? "bg-brand-primary text-bg-white border-brand-primary hover:bg-brand-hover"
-          : "bg-bg-white text-gray-700 border-brand-tertiary hover:bg-brand-tertiary",
+          : "bg-bg-white text-gray-700 border border-brand-tertiary hover:bg-brand-tertiary",
       ].join(" ")}
     >
       {leftIconSrc && (
@@ -55,3 +50,5 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+export default Button;
