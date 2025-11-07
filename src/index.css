@@ -22,6 +22,10 @@
   --color-point-lilac: #efe9ff;
   --color-point-pink: #ffe6ef;
   --color-landing-grad: #f6f7fb;
+  --color-gradient-start: #7f56d9;
+  --color-gradient-end: #5a42f3;
+  --color-spoiler-bg: #fffbea;
+  --color-spoiler-border: #f6e05e;
 }
 
 @utility bg-landing {
@@ -42,4 +46,13 @@ body {
   font-family: var(--font-pretendard);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: graygray;
+}
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none; /* IE, Edge */
+  scrollbar-width: none; /* Firefox */
 }

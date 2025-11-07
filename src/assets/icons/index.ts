@@ -6,6 +6,20 @@ import Spark from "../icons/Spark.svg";
 import Unseen from "../icons/Unseen.svg";
 import Kakao from "../icons/kakao.svg";
 import StreamingIcon from "../icons/StreamingIcon.svg";
+import ChatButton from "../icons/ChatButton.svg";
+import Seen from "../icons/Seen.svg";
+import WhiteLogo from "../icons/WhiteLogo.svg";
 
-export { Home, Logo, Profile, Search, Spark, Unseen, Kakao, StreamingIcon };
-
+export {
+  Home,
+  Logo,
+  Profile,
+  Search,
+  Spark,
+  Unseen,
+  Kakao,
+  StreamingIcon,
+  ChatButton,
+  Seen,
+  WhiteLogo,
+};

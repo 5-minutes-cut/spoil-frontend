@@ -1,8 +1,10 @@
 import React from "react";
-import { Dropdown } from "../../../../src/components/Dropdown"; // 앞서 만든 드롭다운 재사용
-import { Badge } from "../../../../src/components/Badge"; // 앞서 만든 배지 재사용
+import { Dropdown } from "../../../../src/components/Dropdown";
+import { Badge } from "../../../../src/components/Badge";
 
 interface WorkCardProps {
+  season: string; // ✅ 추가
+  episode: string; // ✅ 추가
   title: string;
   description: string;
   imageUrl: string;
@@ -13,6 +15,8 @@ interface WorkCardProps {
 }
 
 export const WorkCard: React.FC<WorkCardProps> = ({
+  season,
+  episode,
   title,
   description,
   imageUrl,
@@ -21,15 +25,15 @@ export const WorkCard: React.FC<WorkCardProps> = ({
   episodes,
   onSubmit,
 }) => {
-  const [selectedSeason, setSelectedSeason] = React.useState(seasons[0]);
-  const [selectedEpisode, setSelectedEpisode] = React.useState(episodes[0]);
+  const [selectedSeason, setSelectedSeason] = React.useState(season);
+  const [selectedEpisode, setSelectedEpisode] = React.useState(episode);
 
   const handleSubmit = () => {
     if (onSubmit) onSubmit(selectedSeason, selectedEpisode);
   };
 
   return (
-    <div className="flex w-full bg-bg-white rounded-2xl shadow-sm  h-70 items-stretch">
+    <div className="flex w-full bg-bg-white rounded-2xl shadow-sm h-70 m-7 items-stretch">
       {/* 왼쪽 이미지 */}
       <div className="w-1/3">
         <img
@@ -41,7 +45,6 @@ export const WorkCard: React.FC<WorkCardProps> = ({
 
       {/* 오른쪽 콘텐츠 */}
       <div className="w-2/3 p-6 flex flex-col justify-between">
-        {/* 제목 및 배지 */}
         <div>
           <div className="flex items-center mb-2">
             <h2 className="text-xl font-semibold pr-5">{title}</h2>
@@ -61,7 +64,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         </div>
 
         {/* 시청 기록 영역 */}
-        <div className="mt-3 bg-gray-50 rounded-xl p-4 ">
+        <div className="mt-3 bg-gray-50 rounded-xl p-4">
           <div className="text-l text-gray-700 font-extrabold mb-4">
             시청 기록
           </div>
@@ -83,6 +86,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
                 onChange={(v) => setSelectedEpisode(v)}
               />
             </div>
+
             <div className="shrink-0 mt-6">
               <button
                 onClick={handleSubmit}
