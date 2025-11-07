@@ -39,7 +39,7 @@ export default function Header() {
           <Link to="/search" className="flex items-center gap-2">
             <img className="h-5 w-5" src={Logo} />
             <span className="text-lg font-semibold text-brand-primary">
-              SPOIL
+              LOCKSPO
             </span>
           </Link>
           <nav className="flex items-center gap-2">

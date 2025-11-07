@@ -206,7 +206,7 @@ export default function HomePage() {
       </h3>
       {allFiltered.length === 0 ? (
         <p className="mb-10 rounded-xl border border-brand-tertiary bg-bg-white px-4 py-6 text-sm text-gray-600">
-          해당 작품이 아직 SPOIL에 없습니다.
+          해당 작품이 아직 LOCKSPO에 없습니다.
         </p>
       ) : (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 mb-10">
