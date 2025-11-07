@@ -1,16 +1,12 @@
-import { Navigate, Outlet, useLocation } from "react-router-dom";
-
-function isAuthed() {
-  return !!localStorage.getItem("LOCKSPO_session");
-}
+// routes/ProtectedRoute.tsx
+import { Outlet, Navigate, useLocation } from "react-router-dom";
 
 export default function ProtectedRoute() {
-  const loc = useLocation();
+  const location = useLocation();
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-  if (!isAuthed()) {
-    return (
-      <Navigate to="/" replace state={{ from: loc.pathname + loc.search }} />
-    );
+  if (!isLoggedIn) {
+    return <Navigate to="/" replace state={{ from: location }} />;
   }
   return <Outlet />;
 }

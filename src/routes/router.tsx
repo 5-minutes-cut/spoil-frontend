@@ -6,12 +6,14 @@ import ChatPage from "../pages/ChatPage/ChatPage";
 import ProfilePage from "../pages/ProfilePage/ProfilePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import ProtectedRoute from "./ProtectedRoute";
+import KakaoCallbackPage from "../pages/Auth";
 
 export const router = createBrowserRouter([
   {
     element: <Layout />,
     children: [
       { path: "/", element: <LandingPage /> },
+      { path: "/auth", element: <KakaoCallbackPage /> },
 
       {
         element: <ProtectedRoute />,
