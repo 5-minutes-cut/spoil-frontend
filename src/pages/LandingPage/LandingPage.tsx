@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import type { FeatureCardProps } from "./components/FeatureCard";
 import { Kakao, Logo, Search, Spark, Unseen } from "../../assets/icons";
 import FeatureCard from "./components/FeatureCard";
+import { kakaoSignIn } from "../../apis/api";
 
 const FEATURES: FeatureCardProps[] = [
   {
@@ -49,13 +49,13 @@ export default function LandingPage() {
           ))}
         </div>
         <div className="flex justify-center">
-          <Link
-            to="/search"
+          <button
+            onClick={() => kakaoSignIn}
             className="inline-flex w-full max-w-90 items-center justify-center gap-2 rounded-xl bg-point-kakao px-5 py-3 text-sm font-semibold text-black shadow-card transition hover:brightness-[0.97] active:brightness-[0.94]"
           >
             <img src={Kakao} className="h-6 w-6" />
             카카오로 시작하기
-          </Link>
+          </button>
         </div>
       </div>
     </section>
