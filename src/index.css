@@ -17,6 +17,24 @@
   --color-brand-secondary: #e8e9fe;
   --color-brand-tertiary: #f3f4f6;
   --color-brand-hover: #4c38d8;
+  --color-point-kakao: #fee500;
+  --color-point-purple: #e8e9fe;
+  --color-point-lilac: #efe9ff;
+  --color-point-pink: #ffe6ef;
+  --color-landing-grad: #f6f7fb;
+}
+
+@utility bg-landing {
+  background: radial-gradient(
+      90% 60% at 20% 10%,
+      rgba(90, 66, 243, 0.06) 0%,
+      rgba(90, 66, 243, 0) 60%
+    ),
+    linear-gradient(to bottom, var(--color-bg-white), var(--color-landing-grad));
+}
+
+@utility shadow-card {
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
 }
 
 html,
