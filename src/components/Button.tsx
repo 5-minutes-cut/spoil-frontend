@@ -34,14 +34,14 @@ export const Button: React.FC<ButtonProps> = ({
         ${sizeClasses[size]}
         ${
           selected
-            ? "bg-brand-primary text-brand-default" // 보라색 활성화
-            : "bg-brand-default border-gray-100 hover:bg-gray-300"
+            ? "bg-brand-primary text-bg-white" // 보라색 활성화
+            : "bg-bg-white border-gray-100 hover:bg-gray-300"
         }
       `}
     >
       {/* 아이콘 예시 (TV나 필름 아이콘 대신 대체 가능) */}
       {selected ? (
-        <span className="text-brand-default"></span>
+        <span className="text-bg-white"></span>
       ) : (
         <span className="text-gray-500"></span>
       )}

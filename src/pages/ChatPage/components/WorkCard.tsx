@@ -29,7 +29,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
   };
 
   return (
-    <div className="flex w-full bg-brand-default rounded-2xl shadow-sm  h-60 items-stretch">
+    <div className="flex w-full bg-bg-white rounded-2xl shadow-sm  h-70 items-stretch">
       {/* 왼쪽 이미지 */}
       <div className="w-1/3">
         <img
@@ -46,8 +46,12 @@ export const WorkCard: React.FC<WorkCardProps> = ({
           <div className="flex items-center mb-2">
             <h2 className="text-xl font-semibold pr-5">{title}</h2>
             <div className="flex items-center gap-2">
-              {badges.map((b) => (
-                <Badge key={b} label={b} />
+              {badges.map((b, i) => (
+                <Badge
+                  key={`${b}-${i}`}
+                  label={b}
+                  bgPurple={i % 2 === 0 ? false : true}
+                />
               ))}
             </div>
           </div>
@@ -57,7 +61,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         </div>
 
         {/* 시청 기록 영역 */}
-        <div className="mt-1 bg-gray-50 rounded-xl p-4 ">
+        <div className="mt-3 bg-gray-50 rounded-xl p-4 ">
+          <div className="text-l text-gray-700 font-extrabold mb-4">
+            시청 기록
+          </div>
           <div className="flex items-start gap-10">
             <div className="flex flex-col shrink-0">
               <p className="text-xs text-gray-500 mb-2">시즌</p>
@@ -69,7 +76,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             </div>
 
             <div className="flex flex-col shrink-0">
-              <p className="text-xs text-gray-500 mb-2">시청 기록</p>
+              <p className="text-xs text-gray-500 mb-2">에피소드</p>
               <Dropdown
                 options={episodes}
                 defaultOption={selectedEpisode}
@@ -79,7 +86,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
             <div className="shrink-0 mt-6">
               <button
                 onClick={handleSubmit}
-                className="bg-brand-primary text-brand-default px-10 py-2 rounded-md text-sm font-medium hover:bg-brand-hover transition-colors"
+                className="bg-brand-primary text-bg-white px-10 py-2 rounded-md text-sm font-medium hover:bg-brand-hover transition-colors"
               >
                 수정
               </button>
