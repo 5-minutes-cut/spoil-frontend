@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../components/Button";
 import {
@@ -15,6 +15,7 @@ import {
   TVWhite,
 } from "../../assets/icons";
 import ConfirmModal from "./components/ConfirmModal";
+import { getMyProfile, type UserProfile } from "../../apis/api";
 
 type Tab = "profile" | "records" | "bugs";
 
@@ -49,6 +50,8 @@ const INITIAL_USER: User = {
     "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=400&auto=format&fit=crop",
   points: 5,
 };
+
+const DEFAULT_AVATAR = INITIAL_USER.photoUrl;
 
 const INITIAL_RECORDS: RecordItem[] = [
   {
@@ -124,6 +127,43 @@ export default function ProfilePage() {
 
   const [logoutOpen, setLogoutOpen] = useState(false);
   const [withdrawOpen, setWithdrawOpen] = useState(false);
+
+  useEffect(() => {
+    let active = true;
+
+    const applyProfile = (profile: UserProfile) => {
+      const nextUser = {
+        name: profile.nickname || profile.username,
+        email: profile.email || "",
+        photoUrl: profile.profile_image || DEFAULT_AVATAR,
+        points: 0,
+      };
+      setUser(nextUser);
+      setName(nextUser.name);
+      setEmail(nextUser.email);
+    };
+
+    (async () => {
+      const profile = await getMyProfile();
+      if (!active) return;
+      if (profile) {
+        applyProfile(profile);
+        return;
+      }
+
+      const cached = localStorage.getItem("userProfile");
+      if (!cached) return;
+      try {
+        applyProfile(JSON.parse(cached) as UserProfile);
+      } catch {
+        localStorage.removeItem("userProfile");
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const onSaveProfile = () => {
     setUser((u) => ({ ...u, name, email }));

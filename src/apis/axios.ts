@@ -13,6 +13,10 @@ export const api: AxiosInstance = axios.create({
   withCredentials: true,
 });
 
+function getAccessToken(): string | null {
+  return localStorage.getItem("access_token");
+}
+
 function getCookie(name: string): string | null {
   const value = `; ${document.cookie}`;
   const parts = value.split(`; ${name}=`);
@@ -20,7 +24,17 @@ function getCookie(name: string): string | null {
   return null;
 }
 
-api.interceptors.request.use((config: InternalAxiosRequestConfig) => config);
+function getRefreshToken(): string | null {
+  return getCookie("refresh_token") || localStorage.getItem("refresh_token");
+}
+
+api.interceptors.request.use((config: InternalAxiosRequestConfig) => {
+  const accessToken = getAccessToken();
+  if (accessToken) {
+    config.headers.Authorization = `Bearer ${accessToken}`;
+  }
+  return config;
+});
 
 let isRefreshing = false;
 let queued: Array<() => void> = [];
@@ -43,7 +57,7 @@ api.interceptors.response.use(
 
       isRefreshing = true;
       try {
-        const refreshToken = getCookie("refresh_token");
+        const refreshToken = getRefreshToken();
         if (!refreshToken) throw new Error("No refresh cookie");
 
         const resp = await axios.post(
@@ -53,6 +67,9 @@ api.interceptors.response.use(
         );
 
         if (resp.status === 200 || resp.status === 201) {
+          if (resp.data?.access) {
+            localStorage.setItem("access_token", resp.data.access);
+          }
           queued.forEach((fn) => fn());
           queued = [];
           return api.request(original);
