@@ -33,7 +33,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
   };
 
   return (
-    <div className="flex w-full bg-bg-white rounded-2xl shadow-sm h-70 m-7 items-stretch">
+    <div className="flex w-full bg-bg-white rounded-2xl shadow-sm h-auto sm:h-70 m-7 items-stretch">
       {/* 왼쪽 이미지 */}
       <div className="w-1/3 overflow-hidden rounded-l-2xl">
         <img
@@ -64,10 +64,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({
         </div>
 
         {/* 시청 기록 영역 */}
-        <div className="h-40 mt-3 bg-gray-50 rounded-xl p-4">
+        <div className="h-auto sm:h-40 mt-3 bg-gray-50 rounded-xl p-4">
           <div className="text-l text-gray-700 font-extrabold">시청 기록</div>
-          <div className="flex  items-start gap-5 ">
-            <div className="flex flex-col flex-shrink ">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
+            <div className="flex flex-col w-full sm:w-auto">
               <p className="text-xs text-gray-500 mb-2">시즌</p>
               <Dropdown
                 options={seasons}
@@ -76,7 +76,7 @@ export const WorkCard: React.FC<WorkCardProps> = ({
               />
             </div>
 
-            <div className="flex flex-col  flex-shrink">
+            <div className="flex flex-col w-full sm:w-auto">
               <p className="text-xs text-gray-500 mb-2">에피소드</p>
               <Dropdown
                 options={episodes}
@@ -85,10 +85,10 @@ export const WorkCard: React.FC<WorkCardProps> = ({
               />
             </div>
 
-            <div className="mt-6 flex-shrink">
+            <div className="w-full sm:w-auto sm:mt-6">
               <button
                 onClick={handleSubmit}
-                className="bg-brand-primary text-bg-white px-8 py-2 rounded-md text-sm font-medium hover:bg-brand-hover transition-all duration-200"
+                className="w-full bg-brand-primary text-bg-white px-8 py-2 rounded-md text-sm font-medium hover:bg-brand-hover transition-all duration-200 sm:w-auto"
               >
                 수정
               </button>
