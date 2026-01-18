@@ -1,15 +1,13 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import { WorkCard } from "./components/WorkCard";
 import { Chat } from "./components/Chat";
 import { ChatHistoryButton } from "./components/ChatHistoryButton";
 import { ChatHistory } from "./components/ChatHistory";
 
 export default function ChatPage() {
-  const { workId } = useParams<{ workId: string }>();
   const [season, setSelectedSeason] = React.useState("1");
   const [episode, setSelectedEpisode] = React.useState("1");
-  const [title, setTitle] = React.useState("더 글로리");
+  const [title] = React.useState("더 글로리");
   const [showHistory, setShowHistory] = React.useState(false);
   const [chatTitle, setChatTitle] = React.useState(
     "현재 시청 기록을 기준으로 대화 중입니다.",
