@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { kakaoSignIn } from "../apis/api";
 
@@ -6,8 +6,11 @@ export default function Auth() {
   const [params] = useSearchParams();
   const navigate = useNavigate();
   const code = useMemo(() => params.get("code"), [params]);
+  const hasRunRef = useRef(false);
 
   useEffect(() => {
+    if (hasRunRef.current) return;
+    hasRunRef.current = true;
     (async () => {
       if (!code) {
         navigate("/", { replace: true });

@@ -52,6 +52,14 @@ export type TokenPair = {
   refresh: string;
 };
 
+export type UserProfile = {
+  id: ID;
+  username: string;
+  email: string;
+  nickname: string;
+  profile_image?: string | null;
+};
+
 function logApiError(label: string, e: unknown) {
   if (isAxiosError(e)) {
     console.error(`${label} error:`, e.response?.status, e.response?.data);
@@ -209,7 +217,11 @@ export async function loginWithPassword(payload: {
 }): Promise<TokenPair | null> {
   try {
     const res = await api.post<TokenPair>("/user/login/", payload);
-    if (res.status === 201 || res.status === 200) return res.data;
+    if (res.status === 201 || res.status === 200) {
+      localStorage.setItem("access_token", res.data.access);
+      localStorage.setItem("refresh_token", res.data.refresh);
+      return res.data;
+    }
   } catch (e) {
     logApiError("loginWithPassword", e);
   }
@@ -269,8 +281,21 @@ export function redirectToKakaoLogin(): void {
 
 export async function kakaoSignIn(code: string): Promise<boolean> {
   try {
-    const res = await api.get("/user/kakao/callback/", { params: { code } });
+    const res = await api.get<{
+      user?: UserProfile;
+      access?: string;
+      refresh?: string;
+    }>("/user/kakao/callback/", { params: { code } });
     if (res.status === 200) {
+      if (res.data.access) {
+        localStorage.setItem("access_token", res.data.access);
+      }
+      if (res.data.refresh) {
+        localStorage.setItem("refresh_token", res.data.refresh);
+      }
+      if (res.data.user) {
+        localStorage.setItem("userProfile", JSON.stringify(res.data.user));
+      }
       localStorage.setItem("isLoggedIn", "true");
       return true;
     }
@@ -287,12 +312,38 @@ export async function kakaoSignIn(code: string): Promise<boolean> {
 
 export async function kakaoCallback(code: string): Promise<boolean> {
   try {
-    const res = await api.get("/user/kakao/callback/", { params: { code } });
+    const res = await api.get<{
+      user?: UserProfile;
+      access?: string;
+      refresh?: string;
+    }>("/user/kakao/callback/", { params: { code } });
+    if (res.status === 200) {
+      if (res.data.access) {
+        localStorage.setItem("access_token", res.data.access);
+      }
+      if (res.data.refresh) {
+        localStorage.setItem("refresh_token", res.data.refresh);
+      }
+      if (res.data.user) {
+        localStorage.setItem("userProfile", JSON.stringify(res.data.user));
+      }
+      return true;
+    }
     return res.status === 200;
   } catch (e) {
     logApiError("kakaoCallback", e);
     return false;
   }
+}
+
+export async function getMyProfile(): Promise<UserProfile | null> {
+  try {
+    const res = await api.get<UserProfile>("/user/me/");
+    if (res.status === 200) return res.data;
+  } catch (e) {
+    logApiError("getMyProfile", e);
+  }
+  return null;
 }
 
 export async function refreshAccessToken(): Promise<boolean> {
